@@ -4,8 +4,19 @@ from typing import List
 import crud
 import models
 import database
+from database import engine
+
+# Create all tables (if they don't exist yet)
+models.Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
+from fastapi import FastAPI
+
+
+@app.get("/")
+def read_root():
+    return {"message": "Hello, World!"}
+
 
 # Dependency to get the database session
 def get_db():

@@ -2,14 +2,14 @@ from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
-# Corrected database URL format for MySQL: mysql+pymysql://username:password@host/database_name
-SQLALCHEMY_DATABASE_URL = "mysql+pymysql://root:Shema0987!!!@localhost/Pets"  # Corrected the database name to 'Pets'
+# Database URL
+DATABASE_URL = "postgresql://postgres:db_passcode@localhost/petsdata"  # Fixed typo 'postgress' to 'postgres'
 
-# Create the engine
-engine = create_engine(SQLALCHEMY_DATABASE_URL, pool_size=10, max_overflow=20)
+# Set up the engine to connect to PostgreSQL
+engine = create_engine(DATABASE_URL)
 
-# Create a session factory
+# Create a sessionmaker
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
-# Base class for models
+# Base class for all models
 Base = declarative_base()
